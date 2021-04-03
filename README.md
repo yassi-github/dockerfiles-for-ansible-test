@@ -1,21 +1,16 @@
 # Usage
 
-## **DON'T forget to white github user name at Line 16 before running below.**
+Please input `GitHubUserName` and option `LoginName`(default: test)
 
-At the docker server "bastion", cd this file directory and run:  
 ```shell=
-docker build -t ansible-test:init .
-docker run -itd -p 50022:22 --privileged --name ansible-test-server ansible-test:init
+$ docker build -t ansible-test:init --build-arg GitHubUserName="<your github name>" --build-arg LoginName="<user name (default: test)>" .
+$ docker run -d --privileged --name ansible-test-server ansible-test:init
+
+# example
+$ docker build -t ansible-test:init --build-arg GitHubUserName="yassi-github" --build-arg LoginName="piyo" .
 ```
 
 Then, use ssh like:
 ```shell=
-ssh -i ~/.ssh/id_rsa -p 50022 test@localhost
+$ ssh -i ~/.ssh/id_rsa piyo@172.17.0.2
 ```
-
-or
-
-```shell=
-ssh -i ~/.ssh/id_rsa test@172.17.0.2
-```
-
